@@ -3,6 +3,8 @@ import { storage } from './utils/storage';
 import { grade7Vocabulary, grammarQuestions, sentences } from './data/vocabulary';
 import AdminView from './components/Admin';
 import ReminderSettings, { setupDailyReminder } from './components/Reminder';
+import MobileGuide from './components/MobileGuide';
+import MobileCheckin from './components/MobileCheckin';
 import './App.css';
 
 // 获取今日日期字符串
@@ -130,6 +132,8 @@ export default function App() {
       {view === 'stats' && <StatsView child={currentChild} onBack={() => setView('home')} />}
       {view === 'admin' && <AdminView onBack={() => setView('home')} />}
       {view === 'reminder' && <ReminderSettings onBack={() => setView('home')} />}
+      {view === 'mobile' && <MobileGuide onBack={() => setView('home')} />}
+      {view === 'mobile-checkin' && <MobileCheckin child={currentChild} onBack={() => setView('home')} />}
     </div>
   );
 }
@@ -171,6 +175,14 @@ function HomeView({ child, onNavigate }) {
         <div className="practice-card" onClick={() => onNavigate('reminder')}>
           <span className="practice-icon">🔔</span>
           <span className="practice-name">打卡提醒</span>
+        </div>
+        <div className="practice-card" onClick={() => onNavigate('mobile')}>
+          <span className="practice-icon">📱</span>
+          <span className="practice-name">手机安装</span>
+        </div>
+        <div className="practice-card" onClick={() => onNavigate('mobile-checkin')}>
+          <span className="practice-icon">⚡</span>
+          <span className="practice-name">极速打卡</span>
         </div>
       </div>
 
